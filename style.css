@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: grey url(https://i.loli.net/2018/04/27/5ae2e0b828eac.jpg)
+    no-repeat center center;
+  background-size: cover;
+}
+main {
+  height: auto;
+}
+.wrapper {
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 10px 40px 10px 0;
+}
+#nav {
+  display: inline-block;
+}
+#nav > div:nth-child(2) {
+  margin-left: 80px;
+}
+#nav > div:nth-child(3) {
+  margin-left: 40px;
+}
+#nav > div:nth-child(4) {
+  margin-left: -40px;
+}
+main {
+  text-align: center;
+}
+kbd {
+  background: #000;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+.key {
+  width: 60px;
+  height: 50px;
+  background: linear-gradient(to bottom, #292929 0%, #111111 100%);
+  border: 1px solid #373737;
+  color: #c5c5c5;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #1a1b1c, 0 0 0 2px #1f2020, 0 3px 0 2px #080808;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+}
+kbd > button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: none;
+
+}
+kbd:hover > button {
+  display: inline-block;
+  border-radius: 2px;
+  padding: 1px;
+}
+kbd > img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 0;
+  bottom: 0;
+}
+kbd>span{
+  display: none;
+}
+kbd:hover >span{
+  text-transform: lowercase;
+  font-size: 16px;
+  display: inline;
+  position: fixed;
+  margin-right: 100px;
+  color: rgb(84,73,70);
+  background: rgb(239,239,239);
+  z-index: 2;
+  margin-left: 35px;
+  padding:2px 5px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px 2px rgba(245,237,245,0.75);
+}
