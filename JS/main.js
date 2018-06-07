@@ -1,5 +1,5 @@
 !function() {
-  var view = document.querySelector("#nav");
+  var view = document;
   var model = {
     hash_backup: null,
     keys: {
@@ -94,19 +94,33 @@
   var controller = {
     view: null,
     model: null,
+    form: null,
     init: function(view, model) {
       this.view = view;
       this.model = model;
+      this.form = this.view.querySelector("#search");
       this.model.init();
       this.generatingKeyboard();
-      this.inputFocus();
-      this.inputBlur();
+      this.inputFocus(this.model.keys, this.model.hash);
+      this.inputBlur(this.model.keys, this.model.hash);
+      this.secrch();
+    },
+    secrch: function() {
+      this.form.addEventListener("submit", e => {
+        e.preventDefault();
+        let searchContent = this.form.querySelector("#searchText").value;
+        if (searchContent) {
+          window.open("http://www.google.com/search?q=" + searchContent);
+        } else {
+          alert("还未输入搜索内容");
+        }
+      });
     },
     generatingKeyboard: function() {
       let keys = this.model.keys;
       let hash = this.model.hash;
       for (let index = 0; index < keys.length; index++) {
-        Newdiv = document.createElement("div");
+        Newdiv = this.view.createElement("div");
         nav.appendChild(Newdiv);
         var row = keys[index];
 
@@ -126,7 +140,7 @@
       }
     },
     createKey: function(row, index2) {
-      let Newkey = document.createElement("kbd");
+      let Newkey = this.view.createElement("kbd");
       Newkey.textContent = row[index2];
       Newkey.className = "key";
       Newkey.id = "key";
@@ -134,7 +148,7 @@
     },
     createButton: function(row, index2) {
       let hash = this.model.hash;
-      let Newbutton = document.createElement("button");
+      let Newbutton = this.view.createElement("button");
       Newbutton.textContent = "E";
       Newbutton.id = row[index2];
       Newbutton.onclick = buttonclick => {
@@ -148,16 +162,16 @@
       return Newbutton;
     },
     createSpan: function(hash, row, index2) {
-      let Newspan = document.createElement("span");
+      let Newspan = this.view.createElement("span");
       Newspan.textContent = "点击前往 http://" + hash[row[index2]];
       return Newspan;
     },
     createIcon: function(hash, row, index2) {
-      let Newicon = document.createElement("img");
+      let Newicon = this.view.createElement("img");
       if (hash[row[index2]]) {
         Newicon.src = "http://" + hash[row[index2]] + "/favicon.ico";
       } else {
-        Newicon.src = './img/noIcon.png';
+        Newicon.src = "./img/noIcon.png";
       }
       return Newicon;
     },
@@ -181,7 +195,7 @@
       };
     },
     keyPress: function(hash) {
-      document.onkeypress = keypress => {
+        this.view.onkeypress = keypress => {
         let website = hash[keypress.key];
         if (website) {
           window.open("http://" + website, "_blank");
@@ -191,17 +205,26 @@
       };
     },
     //当输入栏启用时
-    inputFocus: function() {
-      let input = document.getElementById("searchText");
+    inputFocus: function(keys, hash) {
+      let input = this.view.getElementById("searchText");
       input.onfocus = () => {
-        console.log("1");
-        delete document.onkeypress;
+        for (let index = 0; index < keys.length; index++) {
+          var row = keys[index];
+          for (var index2 = 0; index2 < row["length"]; index2++) {
+            this.view.onkeypress = keypress => {};
+          }
+        }
       };
     },
-    inputBlur: function() {
-      let input = document.getElementById("searchText");
+    inputBlur: function(keys, hash) {
+      let input = this.view.getElementById("searchText");
       input.onblur = () => {
-        console.log("2");
+        for (let index = 0; index < keys.length; index++) {
+          var row = keys[index];
+          for (var index2 = 0; index2 < row["length"]; index2++) {
+            this.keyPress(hash);
+          }
+        }
       };
     }
   };
