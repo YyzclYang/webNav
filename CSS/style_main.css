@@ -4,11 +4,12 @@
 }
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background: grey url(https://i.loli.net/2018/04/27/5ae2e0b828eac.jpg)
-    no-repeat center center;
+  background: grey no-repeat center center;
+  background-image: url(../img/background.jpg);
   background-size: cover;
 }
 main {
