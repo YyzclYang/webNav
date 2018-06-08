@@ -1,8 +1,16 @@
-#searchText{
-    width:500px;
-    height: 30px;
+header .formGroup {
+  display: flex;
 }
-#searchSubmit{
-    margin-left: 20px;
-    height: 30px;
+header .formGroup .searchList > select {
+  height: 34px;
+}
+#searchText {
+  width: 500px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
+}
+#searchSubmit {
+  margin-left: 20px;
+  height: 30px;
 }

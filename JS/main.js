@@ -80,7 +80,8 @@
       v: "v2ex.com",
       b: "bilibili.com",
       n: "nodejs.cn",
-      m: "imooc.com"
+      m: "imooc.com",
+      search: "google"
     },
     init: function() {
       this.hash_backup = JSON.parse(
@@ -103,14 +104,37 @@
       this.generatingKeyboard();
       this.inputFocus(this.model.keys, this.model.hash);
       this.inputBlur(this.model.keys, this.model.hash);
+      this.searchInit();
+      this.searchSelectOnchange();
       this.secrch();
+    },
+    searchInit: function() {
+      let searchName = this.model.hash.search;
+      let searchOption = this.view.querySelector(
+        "option[name=" + searchName + "]"
+      );
+      searchOption.selected = "selected";
+    },
+    searchSelectOnchange: function() {
+      let hash = this.model.hash;
+      let select = this.view.querySelector("#searchSelect");
+      select.addEventListener("change", e => {
+        let searchSelect = this.view.getElementById("searchSelect");
+        let searchIndex = searchSelect.selectedIndex;
+        let searchName = searchSelect.options[searchIndex].innerText;
+        hash.search = searchName;
+        localStorage.setItem("hash_backup", JSON.stringify(hash));
+      });
     },
     secrch: function() {
       this.form.addEventListener("submit", e => {
         e.preventDefault();
         let searchContent = this.form.querySelector("#searchText").value;
+        let searchSelect = this.view.getElementById("searchSelect");
+        let searchIndex = searchSelect.selectedIndex;
+        let searchValue = searchSelect.options[searchIndex].value;
         if (searchContent) {
-          window.open("http://www.google.com/search?q=" + searchContent);
+          window.open(searchValue + searchContent);
         } else {
           alert("还未输入搜索内容");
         }
@@ -195,7 +219,7 @@
       };
     },
     keyPress: function(hash) {
-        this.view.onkeypress = keypress => {
+      this.view.onkeypress = keypress => {
         let website = hash[keypress.key];
         if (website) {
           window.open("http://" + website, "_blank");
