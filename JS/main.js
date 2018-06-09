@@ -52,9 +52,9 @@
       5: "zhangxinxu.com/wordpress/category/css/page/25/",
       6: "tympanus.net/codrops/category/playground/",
       7: "ituring.com.cn/book/1695",
-      8: "http://cndevdocs.com/",
+      8: "cndevdocs.com/",
       9: "adamschwartz.co/magic-of-css/",
-      0: "http://javascript.ruanyifeng.com/",
+      0: "javascript.ruanyifeng.com/",
       q: "qq.com",
       w: "weibo.com",
       e: "ele.me",
@@ -105,18 +105,15 @@
       this.inputFocus(this.model.keys, this.model.hash);
       this.inputBlur(this.model.keys, this.model.hash);
       this.searchInit();
-      this.searchSelectOnchange();
       this.secrch();
     },
     searchInit: function() {
+      let hash = this.model.hash;
       let searchName = this.model.hash.search;
       let searchOption = this.view.querySelector(
         "option[name=" + searchName + "]"
       );
       searchOption.selected = "selected";
-    },
-    searchSelectOnchange: function() {
-      let hash = this.model.hash;
       let select = this.view.querySelector("#searchSelect");
       select.addEventListener("change", e => {
         let searchSelect = this.view.getElementById("searchSelect");
@@ -180,6 +177,7 @@
         let newWebsite = prompt("请输入一个新网址", oldWebsite);
         if (newWebsite) {
           hash[buttonclick.target.id] = newWebsite;
+          Newbutton.nextSibling.innerText = "点击前往 http://" + newWebsite;//实时修改提示语句
         }
         localStorage.setItem("hash_backup", JSON.stringify(hash));
       };

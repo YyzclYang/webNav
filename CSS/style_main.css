@@ -9,7 +9,7 @@ body {
   align-items: center;
   height: 100vh;
   background: grey no-repeat center center;
-  /* background-image: url(../img/background.jpg); */
+  background-image: url(../img/background.jpg);
   background-size: cover;
 }
 main {
