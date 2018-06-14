@@ -126,7 +126,7 @@
     secrch: function() {
       this.form.addEventListener("submit", e => {
         e.preventDefault();
-        let searchContent = this.form.querySelector("#searchText").value;
+        let searchContent = this.form.querySelector("#searchInput").value;
         let searchSelect = this.view.getElementById("searchSelect");
         let searchIndex = searchSelect.selectedIndex;
         let searchValue = searchSelect.options[searchIndex].value;
@@ -228,7 +228,7 @@
     },
     //当输入栏启用时
     inputFocus: function(keys, hash) {
-      let input = this.view.getElementById("searchText");
+      let input = this.view.getElementById("searchInput");
       input.onfocus = () => {
         for (let index = 0; index < keys.length; index++) {
           var row = keys[index];
@@ -239,7 +239,7 @@
       };
     },
     inputBlur: function(keys, hash) {
-      let input = this.view.getElementById("searchText");
+      let input = this.view.getElementById("searchInput");
       input.onblur = () => {
         for (let index = 0; index < keys.length; index++) {
           var row = keys[index];

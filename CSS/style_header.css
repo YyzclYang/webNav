@@ -4,13 +4,29 @@ header .formGroup {
 header .formGroup .searchList > select {
   height: 34px;
 }
-#searchText {
+#search {
+  display: flex;
+}
+#searchWrapper {
+  margin-left: 10px;
+  /* border: 1px solid red; */
+}
+#searchInput {
+  outline: none;
+  cursor: text;
   width: 500px;
-  height: 30px;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
+  height: 34px;
+  border: 1px solid #b8b8b8;
+  border-bottom: 1px solid #ccc;
 }
 #searchSubmit {
-  margin-left: 20px;
-  height: 30px;
+  cursor: pointer;
+  width: 75px;
+  height: 34px;
+  line-height: 34px;
+  padding: 0;
+  border: 0;
+  background: none;
+  background-color: #38f;
+  color: white;
 }
