@@ -128,6 +128,7 @@
       this.form.addEventListener('submit', e => {
         e.preventDefault();
         let searchContent = this.form.querySelector('#searchInput').value;
+        searchContent = encodeURIComponent(searchContent);
         let searchSelect = this.view.getElementById('searchSelect');
         let searchIndex = searchSelect.selectedIndex;
         let searchValue = searchSelect.options[searchIndex].value;
